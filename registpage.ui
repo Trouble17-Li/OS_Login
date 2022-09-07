@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RegistPage</class>
+ <widget class="QWidget" name="RegistPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>思源黑体</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(0, 170, 255);</string>
+  </property>
+  <widget class="QWidget" name="whiteBlockWiget_1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>311</y>
+     <width>384</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>321</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>昵称</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>451</y>
+     <width>384</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditId">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>321</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>云针ID</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>591</y>
+     <width>252</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditAuthCode">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>191</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>验证码</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_4" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>521</y>
+     <width>384</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditTel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>321</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>手机号</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_5" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>661</y>
+     <width>384</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditPasswd">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>321</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>登录密码                                                    6-16位</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButtonEth">
+   <property name="geometry">
+    <rect>
+     <x>1811</x>
+     <y>981</y>
+     <width>39</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/eth.png);
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonBack">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>67</y>
+     <width>44</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/back.png);
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_6" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>731</y>
+     <width>384</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QLineEdit" name="lineEditPasswd2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>321</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border:none;</string>
+    </property>
+    <property name="placeholderText">
+     <string>确认密码                                                    6-16位</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>1034</x>
+     <y>591</y>
+     <width>118</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>思源黑体</family>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(61, 135, 255);
+color: rgb(255, 255, 255);
+border-radius: 27px;
+border:none;</string>
+   </property>
+   <property name="text">
+    <string>获取验证码</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>778</x>
+     <y>165</y>
+     <width>361</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>思源黑体</family>
+     <pointsize>32</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;请注册您的账号&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonLogin">
+   <property name="geometry">
+    <rect>
+     <x>928</x>
+     <y>817</y>
+     <width>64</width>
+     <height>64</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>思源黑体</family>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+image: url(:/images/login.png);
+border-radius: 32px groove rgba(0,0, 0,0);
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelError">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>610</y>
+     <width>201</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(246, 76, 76);</string>
+   </property>
+   <property name="text">
+    <string>labelError</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_7" native="true">
+   <property name="geometry">
+    <rect>
+     <x>768</x>
+     <y>381</y>
+     <width>121</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>101</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+border:none;
+border-radius:0px;
+combobox-popup:0;
+background:transparent;
+}
+
+QComboBox QAbstractItemView{
+border-radius:0px;
+color:lightblue;
+background-color:white;
+selection-background-color: lightblue;
+}
+</string>
+    </property>
+    <property name="currentText">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>省</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_8" native="true">
+   <property name="geometry">
+    <rect>
+     <x>899</x>
+     <y>381</y>
+     <width>121</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>101</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+border:none;
+border-radius:0px;
+combobox-popup:0;
+background:transparent;
+}
+
+QComboBox QAbstractItemView{
+border-radius:0px;
+color:lightblue;
+background-color:white;
+selection-background-color: lightblue;
+}
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>市</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="whiteBlockWiget_9" native="true">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>381</y>
+     <width>121</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 27px;</string>
+   </property>
+   <widget class="QComboBox" name="comboBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>101</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>思源黑体</family>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+border:none;
+border-radius:0px;
+combobox-popup:0;
+background:transparent;
+}
+
+QComboBox QAbstractItemView{
+border-radius:0px;
+color:lightblue;
+background-color:white;
+selection-background-color: lightblue;
+}
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>区</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditId</tabstop>
+  <tabstop>lineEditTel</tabstop>
+  <tabstop>lineEditAuthCode</tabstop>
+  <tabstop>lineEditPasswd</tabstop>
+  <tabstop>lineEditPasswd2</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
