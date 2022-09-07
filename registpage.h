@@ -13,6 +13,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonParseError>
+#include <QRegularExpression>
 
 
 namespace Ui {
@@ -45,6 +46,11 @@ private slots:
     void on_comboBox_currentTextChanged(const QString &arg1);
 
     void on_comboBox_2_currentTextChanged(const QString &arg1);
+
+    void on_lineEditPasswd_editingFinished();
+
+
+    void on_pushButtonLogin_clicked();
 
 private:
     Ui::RegistPage *ui;

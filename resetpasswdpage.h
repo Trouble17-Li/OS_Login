@@ -36,6 +36,8 @@ private slots:
 
     void on_lineEditPasswd_textEdited(const QString &arg1);
 
+    void on_pushButtonBack_clicked();
+
 private:
     Ui::ResetPasswdPage *ui;
     MainWindow *mainwindow;

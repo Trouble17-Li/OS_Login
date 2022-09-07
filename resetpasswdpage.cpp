@@ -88,3 +88,10 @@ void ResetPasswdPage::on_lineEditPasswd_textEdited(const QString &arg1)
     ui->labelError->close();
 }
 
+
+void ResetPasswdPage::on_pushButtonBack_clicked()
+{
+    emit mainwindowShowSignal();
+    this->close();
+}
+

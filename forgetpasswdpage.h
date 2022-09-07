@@ -33,6 +33,8 @@ private slots:
 
     void on_lineEditAuthCode_cursorPositionChanged(int arg1, int arg2);
 
+    void on_lineEditTel_textEdited(const QString &arg1);
+
 private:
     Ui::ForgetPasswdPage *ui;
     MainWindow *mainwindow;

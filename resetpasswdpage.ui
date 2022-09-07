@@ -11,9 +11,7 @@
    </rect>
   </property>
   <property name="font">
-   <font>
-    <family>思源黑体</family>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -31,9 +29,7 @@
     </rect>
    </property>
    <property name="font">
-    <font>
-     <family>思源黑体</family>
-    </font>
+    <font/>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);
@@ -50,7 +46,6 @@ border-radius: 27px;</string>
     </property>
     <property name="font">
      <font>
-      <family>思源黑体</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -83,7 +78,6 @@ border:none;</string>
    </property>
    <property name="font">
     <font>
-     <family>思源黑体</family>
      <pointsize>14</pointsize>
     </font>
    </property>
@@ -102,7 +96,6 @@ border-radius: 27px;</string>
     </property>
     <property name="font">
      <font>
-      <family>思源黑体</family>
       <pointsize>12</pointsize>
      </font>
     </property>
@@ -127,22 +120,23 @@ border:none;</string>
   <widget class="QLabel" name="labelError">
    <property name="geometry">
     <rect>
-     <x>920</x>
-     <y>670</y>
-     <width>281</width>
-     <height>17</height>
+     <x>888</x>
+     <y>570</y>
+     <width>144</width>
+     <height>26</height>
     </rect>
    </property>
    <property name="font">
-    <font>
-     <family>思源黑体</family>
-    </font>
+    <font/>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(246, 76, 76);</string>
    </property>
    <property name="text">
     <string>请输入云针ID</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="labelTitle">
@@ -156,7 +150,6 @@ border:none;</string>
    </property>
    <property name="font">
     <font>
-     <family>思源黑体</family>
      <pointsize>32</pointsize>
      <bold>false</bold>
     </font>
@@ -172,7 +165,7 @@ border:none;</string>
    <property name="geometry">
     <rect>
      <x>928</x>
-     <y>586</y>
+     <y>612</y>
      <width>64</width>
      <height>64</height>
     </rect>
@@ -184,9 +177,7 @@ border:none;</string>
     </sizepolicy>
    </property>
    <property name="font">
-    <font>
-     <family>思源黑体</family>
-    </font>
+    <font/>
    </property>
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
@@ -258,7 +249,6 @@ border:none;</string>
    </property>
    <property name="font">
     <font>
-     <family>思源黑体</family>
      <pointsize>12</pointsize>
     </font>
    </property>

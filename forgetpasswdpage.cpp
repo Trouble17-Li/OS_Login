@@ -71,15 +71,53 @@ void ForgetPasswdPage::on_pushButton_clicked()
         if(reply->error() == QNetworkReply::NoError)
         {
             qDebug() << "network is no problem";
-            ui->labelError->close();
-            ui->pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(147, 189, 255);\n"
-                                                            "color: rgb(255, 255, 255);\n"
-                                                            "border-radius: 27px;\n"
-                                                            "border:none;"));
-            ui->lineEditAuthCode->setFocusPolicy(Qt::ClickFocus);
-            ui->pushButton->setText("60s");
 
-            m_timer->start();
+            QRegularExpression re("^1[3456789]\\d{9}$");
+            QRegularExpressionMatch match = re.match(ui->lineEditTel->text(), 0, QRegularExpression::PartialPreferCompleteMatch);
+
+            if(ui->lineEditTel->text() == ""){
+                ui->labelError->setText("请先输入手机号码");
+                ui->labelError->show();
+            }else if(!match.hasMatch()){
+                ui->labelError->setText("请输入正确的手机号码");
+                ui->labelError->show();
+            }else{
+
+                //  发送验证码
+                QString err;
+                QJsonObject input;
+                QByteArray rec;
+                input.insert("phone", ui->lineEditTel->text());
+                input.insert("scene", "CustomerForgetPassword");
+                if(mainwindow->httpRequestSend("http://192.168.0.82:18801/sms/send-code", "POST", input, err, rec)){
+                    QJsonDocument doc = QJsonDocument::fromJson(rec);
+                    QJsonObject obj = doc.object();
+                    if(obj.value("code") == "ok"){
+                        qDebug() << "验证码已发送";
+                        ui->labelError->close();
+                        ui->pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(147, 189, 255);\n"
+                                                                        "color: rgb(255, 255, 255);\n"
+                                                                        "border-radius: 27px;\n"
+                                                                        "border:none;"));
+                        ui->lineEditAuthCode->setFocusPolicy(Qt::ClickFocus);
+                        ui->pushButton->setText("60s");
+
+                        m_timer->start();
+
+                        QString info;
+                        info = "验证码已发送至" + ui->lineEditTel->text().mid(0,3) + "****" + ui->lineEditTel->text().mid(7,4) + "，请输入相应验证码";
+                        ui->labelInfo->setText(info);
+                        ui->labelInfo->show();
+
+                    }else{
+                        qDebug() << "验证码发送失败------" << obj.value("msg");
+                    }
+                }else{
+                    qDebug() << "http request error:" << err;
+                }
+
+            }
+
         }else{
             qDebug() << "no network";
             ui->labelError->setText("请先检查您的网络");
@@ -96,10 +134,38 @@ void ForgetPasswdPage::on_pushButton_clicked()
 
 void ForgetPasswdPage::on_lineEditAuthCode_cursorPositionChanged(int arg1, int arg2)
 {
-    qDebug() << "old pos:" << arg1 << "   new pos:" << arg2;
     if(arg2 == 6){
-        emit resetPasswdPageShowSignal();
-        this->close();
+
+        ui->lineEditAuthCode->setFocusPolicy(Qt::NoFocus);
+        QString err;
+        QByteArray rec;
+        QJsonObject input;
+        input.insert("phone", ui->lineEditTel->text());
+        input.insert("code", ui->lineEditAuthCode->text());
+        qDebug() << "Auth code : " << ui->lineEditAuthCode->text();
+        if(mainwindow->httpRequestSend("http://192.168.0.82:18801/user/forget-pwd-check-code", "POST", input, err, rec)){
+            QJsonDocument doc = QJsonDocument::fromJson(rec);
+            QJsonObject obj = doc.object();
+            if(obj.value("code") == "ok"){
+                qDebug() << "验证码校验成功";
+                ui->labelError->close();
+                emit resetPasswdPageShowSignal();
+                this->close();
+            }else{
+                qDebug() << "验证码校验失败------" << obj.value("msg");
+                ui->labelError->setText("验证码错误");
+                ui->labelError->show();
+                ui->lineEditAuthCode->setFocusPolicy(Qt::ClickFocus);
+            }
+        }else{
+            qDebug() << "http request error:" << err;
+        }
     }
+}
+
+
+void ForgetPasswdPage::on_lineEditTel_textEdited(const QString &arg1)
+{
+    ui->labelError->hide();
 }
 

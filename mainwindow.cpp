@@ -39,32 +39,43 @@ void MainWindow::on_pushButtonLogin_clicked()
     qDebug() << "on_pushButtonLogin_clicked";
     if(ui->lineEditId->text().isEmpty())
     {
-        ui->whiteBlockWidget_2->setGeometry(QRect(768, 500+27, 384, 54));
-        ui->checkBoxRemeberPasswd->setGeometry(QRect(817, 570+27, 92, 23));
-        ui->checkBoxAutoLogin->setGeometry(QRect(817, 602+27, 92, 23));
-        ui->pushButtonForgetPasswd->setGeometry(QRect(1065, 570+27, 82, 26));
-        ui->pushButtonRegist->setGeometry(QRect(1065, 602+27, 80, 26));
-        ui->pushButtonLogin->setGeometry(QRect(928, 660+27, 64, 64));
-
-        ui->labelError->setGeometry(QRect(788, 485, 96, 26));
         ui->labelError->setText("请输入云针ID");
         ui->labelError->show();
 
     }else if(ui->lineEditPasswd->text().isEmpty())
     {
-        ui->checkBoxRemeberPasswd->setGeometry(QRect(817, 570+27, 92, 23));
-        ui->checkBoxAutoLogin->setGeometry(QRect(817, 602+27, 92, 23));
-        ui->pushButtonForgetPasswd->setGeometry(QRect(1065, 570+27, 82, 26));
-        ui->pushButtonRegist->setGeometry(QRect(1065, 602+27, 80, 26));
-        ui->pushButtonLogin->setGeometry(QRect(928, 660+27, 64, 64));
-
-        ui->labelError->setGeometry(QRect(788, 555, 80, 26));
         ui->labelError->setText("请输入密码");
         ui->labelError->show();
 
     }else{
-        this->close();
-        widgetLoadingPage->show();
+
+        QJsonObject input;
+        input.insert("username", ui->lineEditId->text());
+        input.insert("password", ui->lineEditPasswd->text());
+        QString err;
+        QByteArray recData;
+        if(httpRequestSend("http://192.168.0.82:18801/user/access-token", "POST", input, err, recData))
+        {
+            QJsonDocument doc = QJsonDocument::fromJson(recData);
+            QJsonObject obj = doc.object();
+            QJsonValue value = obj.value("msg");
+            QJsonValue code = obj.value("code");
+            if(code.toString() != "ok"){
+                qDebug() << "msg:" << value.toString();
+                ui->labelError->setText(value.toString());
+                ui->labelError->show();
+            }else{
+                QJsonDocument doc = QJsonDocument::fromJson(recData);
+                QJsonObject obj = doc.object();
+                QJsonObject data = obj.value("data").toObject();
+                token = data.value("token").toString();
+                qDebug() << "token :" << token;
+                this->close();
+                widgetLoadingPage->show();
+            }
+        }else{
+            qDebug() << "http reply error:" << err;
+        }
     }
 
 }
@@ -77,24 +88,12 @@ void MainWindow::mainwindowShowSlot()
 
 void MainWindow::on_lineEditId_textEdited(const QString &arg1)
 {
-    ui->whiteBlockWidget_2->setGeometry(QRect(768, 500, 384, 54));
-    ui->checkBoxRemeberPasswd->setGeometry(QRect(817, 570, 92, 23));
-    ui->checkBoxAutoLogin->setGeometry(QRect(817, 602, 92, 23));
-    ui->pushButtonForgetPasswd->setGeometry(QRect(1065, 570, 82, 26));
-    ui->pushButtonRegist->setGeometry(QRect(1065, 602, 80, 26));
-    ui->pushButtonLogin->setGeometry(QRect(928, 660, 64, 64));
     ui->labelError->hide();
 }
 
 
 void MainWindow::on_lineEditPasswd_textEdited(const QString &arg1)
 {
-    ui->checkBoxRemeberPasswd->setGeometry(QRect(817, 570, 92, 23));
-    ui->checkBoxAutoLogin->setGeometry(QRect(817, 602, 92, 23));
-    ui->pushButtonForgetPasswd->setGeometry(QRect(1065, 570, 82, 26));
-    ui->pushButtonRegist->setGeometry(QRect(1065, 602, 80, 26));
-    ui->pushButtonLogin->setGeometry(QRect(928, 660, 64, 64));
-    ui->whiteBlockWidget_2->setGeometry(QRect(768, 500, 384, 54));
     ui->labelError->hide();
 }
 
@@ -135,5 +134,46 @@ void MainWindow::on_pushButtonRegist_clicked()
 
 void MainWindow::resetPasswdPageShowSlot(){
     widgetResetPasswdPage->show();
+}
+
+int MainWindow::httpRequestSend(QString url, QString thod, QJsonObject input, QString &message, QByteArray &recData){
+    qDebug()<<"HttpThread  :  "<<QThread::currentThread();
+    QNetworkAccessManager* netAccessManager= new QNetworkAccessManager;
+    QString reqUrlStr = url;
+    QUrl reqUrl =reqUrlStr;
+
+    QJsonDocument doc = QJsonDocument::fromVariant(QVariant(input.toVariantMap()));
+    QByteArray postData = doc.toJson();
+    QNetworkRequest request;
+    request.setRawHeader("Content-Type", "application/json; charset=UTF-8");
+    request.setUrl(reqUrl);
+
+    QNetworkReply *reply;
+    if(thod == "POST"){
+        reply =  netAccessManager->post(request,postData);
+    }else{
+        reply =  netAccessManager->get(request);
+    }
+
+    /* 等待请求返回结果 */
+    QEventLoop loop;
+    connect(netAccessManager, SIGNAL(finished(QNetworkReply*)), &loop, SLOT(quit()));//finish为manager自带的信号，replyFinished是自定义的
+    loop.exec();
+
+    int res = 1;
+    if (reply->error() == QNetworkReply::NoError){
+        recData = reply->readAll();
+        qDebug()<<"req success:" << recData;
+    }else {
+        message = reply->error();
+        qDebug()<<"req error :" << message;
+        res = -1;
+    }
+
+    /* 释放 reply 内存, 否则会造成内存泄漏 */
+    reply->deleteLater();
+    reply=NULL;
+    return res;
+
 }
 
